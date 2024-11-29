@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+    </style>
+</head>
+
+<body>
+    <h1>猜猜遊戲</h1>
+    <div>範圍在:1~100</div>
+    我猜的數字: <input type="number" class="num">
+    <button type="button" class="compute">送出</button>
+    <div>提示:<span class="result"></span></div>
+
+    <script>
+        let num = document.querySelector('.num');
+        let compute = document.querySelector('.compute');
+        let answer = Math.floor((Math.random() * 100) + 1);
+        let result = document.querySelector('.result');
+        console.log(answer);
+
+
+        let min = 1;
+        let max = 100;
+        result.textContent = `1 ~ 100`;
+
+
+        compute.addEventListener('click', function () {
+            console.log(num.value);
+            
+            if ((num.value < min) || (num.value > max)){
+                result.textContent = "請輸入1~100的數字";
+                result.style.color = 'red';
+                return;
+            }
+
+            if (num.value == answer) {
+                result.textContent = "選中了"
+                result.style.color = 'black';
+            }
+
+            else {
+                if (num.value < answer) {
+                    min = num.value;
+                }
+                else {
+                    max = num.value;
+                }
+                result.textContent = `${min} ~ ${max}`;
+                result.style.color = 'black';
+            }
+        })
+
+
+    </script>
+</body>
+
+</html>
